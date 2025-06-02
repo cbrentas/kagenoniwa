@@ -5,51 +5,190 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kage no niwa</title>
   <style>
-    body {
-      font-family: sans-serif;
-      background: #f8f8f8;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    header {
-      background: #4caf50;
-      color: white;
-      padding: 1.5em;
-      text-align: center;
-    }
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 1em;
-    }
-    .entry {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-bottom: 1.5em;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .entry img {
-      width: 100%;
-      display: block;
-    }
-    .entry .desc {
-      padding: 1em;
-    }
-    .entry .desc h3 {
-      margin-top: 0;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.8em;
-      color: #aaa;
-      padding: 2em 0;
-    }
+  body {
+    background: url('images/glx.jpg') repeat-y left top,
+    url('images/glx.jpg') repeat-y right top;
+    background-color: #e9f5ec; /* Soft minty green */
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: #333;
+  }
+
+  header {
+    background: #4caf50;
+    color: white;
+    padding: 1.5em;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1em;
+	background: #d4e8dc; /* Light leafy green */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .entry {
+    background: #eaf3ea; /* Pale green-beige blend */
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    margin-bottom: 2em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+	transition: box-shadow 0.3s ease;
+  }
+
+  .entry img {
+    width: 100%;
+    display: block;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5em;
+    padding: 1em;
+    background: #fafafa;
+    border-radius: 8px;
+  }
+
+  .photo-grid img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .entry .desc {
+    padding: 1em;
+  }
+
+  .entry .desc h3 {
+    margin-top: 0;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.8em;
+    color: #aaa;
+    padding: 2em 0;
+  }
+
+  details summary {
+    cursor: pointer;
+    font-size: 1.1em;
+  }
+  
+  #lightbox {
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  #lightbox img {
+	width: auto;
+	height: auto;
+	max-width: 90%;
+	max-height: 80vh;
+	border-radius: 8px;
+	box-shadow: 0 0 20px black;
+	object-fit: contain;
+  }
+
+  #caption {
+    color: white;
+    margin-top: 10px;
+    font-size: 1.2em;
+    max-width: 90%;
+    text-align: center;
+  }
+
+  #closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  #prevBtn, #nextBtn {
+    position: fixed;
+    top: 50%;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    padding: 0 10px;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    text-decoration: none;
+  }
+
+  #prevBtn {
+    left: 20px;
+  }
+
+  #nextBtn {
+    right: 20px;
+  }
+
+  #topBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    font-size: 18px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+  }
+
+  #topBtn:hover {
+    background-color: #45a045;
+  }
+	.desc .main-log {
+	font-size: 1.1em;
+	line-height: 1.6;
+	margin-bottom: 0.8em;
+	}
+
+	.sub-box {
+	background-color: #f4f9f6;
+	border-left: 4px solid #a5d6a7;
+	padding: 0.8em 1em;
+	font-style: italic;
+	color: #444;
+	border-radius: 6px;
+	box-shadow: inset 0 0 3px rgba(0,0,0,0.05);
+	}
+
+
   </style>
+
 </head>
+
 <body>
 
   <header>
@@ -58,29 +197,217 @@
   </header>
 
   <div class="container" id="entries">
-    
-    <!-- Entries go here, newest at top -->
-    <div class="entry">
-      <img src="images/2025-06-02.jpg" alt="Plant on June 2">
-      <div class="desc">
-        <h3>May 20, 2025</h3>
-        <p>Seeds planted 3x Jalapeno pots and 2x Habanero. Habanero on the dark small pots</p>
-      </div>
-    </div>
 
     <div class="entry">
       <img src="images/d1.jpg" alt="Plant on May 30">
       <div class="desc">
-        <h3>June 1, 2025</h3>
-        <p>First photo! Just planted everything. The soil smells great and it’s full of promise. Seeds planted 3x Jalapeno pots and 2x Habanero. Habanero on the dark small pots</p>
-      </div>
-    </div>
+		<h3>D1~ 20/05/2025</h3>
+			<p>First photo! Just planted everything. The soil smells great and it’s full of promise. <br>
+			<br>
+			Planted multiple seeds(4-5) of 3x Jalapeno pots and 2x Habanero. Habanero on the dark small pots</p>
+		</p>
+		<div class="sub-box">
+		  🌱Insights: Watering them every day with full sunlight.
+		</div>
+		</div>
+	  
+	</div>
+	
+	<div class="entry">
 
+  <div class="photo-grid">
+    <img src="images/d7.jpg" alt="Day 5">
+  </div>
+  <div class="desc">
+    <h3>D7~ 25/05/2025</h3>
+        <p>The first baby leaf(I think I am saying it correctly) appeared. Thought it was just some other weed leaf.<br>
+		This is the jalapeno pot and it was the first to come out of the soil.<br>
+    </p>
+    <div class="sub-box">
+		🌱Everyone else is sleeping still zZz. When is wake up time??<br>
+    </div>
+  </div>
+  
+	<div class="entry">
+
+  <div class="photo-grid">
+    <img src="images/d11.1.jpg" alt="Day 11 Habanero">
+    <img src="images/d11.2.jpg" alt="Day 11 Jalapeno">
+  </div>
+  <div class="desc">
+    <h3>D11~ 31/05/2025</h3>
+        <p>At day 10 I still didn't see any sprouts. (There were a couple of cloudy days). <br>
+		I got anxious and snooped around the soil. I also wanted to check if the soil was too compact or had too many hard parts like wood or rocks not allowing the sprouts to come out. In the process I found out that there were sprouts.<br>
+		As soon as I found them I let them be cause I didn't want to ruin their "come out" process anymore and just watered them.<br>
+		<br>
+		This is what they looked like at Day 11. Also on the small Jalapeno pot another sprout made their 2baby flowers ahead of the others.
+		</p>
+    </p>
+    <div class="sub-box">
+      🌱At this point I am starting to look more and more into the flowering stage and how to make an online diary to share with people.
+    </div>
+  </div>
+  
+  	<div class="entry">
+
+  <div class="photo-grid">
+    <img src="images/d12.jpg" alt="Day 12">
+  </div>
+  <div class="desc">
+    <h3>🎉D12~ 01/06/25 (EU format)</h3>
+        <p>🎉🎉SUNNY DAY AT LAST AND EVERYONE IS MAKING A PARTY🎉🎉 <br>
+		So excited today. I woke up to every sprout having their baby leaves out. Also we can see a second double sprout pot which gives me hope after not seeing anything for 10days.<br>
+		
+		</p>
+    </p>
+    <div class="sub-box">
+      🌱After some research I decided to not water them daily if not needed(check with finger if soil is dry).<br>
+	  Also I will try to progressively give them more light and not expose these babies to direct sun for the whole day. I mean the first one to grow baby flowers was exposed to it full time and looks fine but then again there were a lot of cloudy days <br>
+	  Nevertheless I read on the internet that it makes the plants stronger so I will start putting them out of the direct sun starting at 10a.m. and progress by adding 1hour of direct sun time every day.
+    </div>
+  </div>
+    
+
+
+	<div class="entry">
+
+  <div class="photo-grid">
+    <img src="images/d13.1.jpg" alt="Day 13.1">
+	<img src="images/d13.2.jpg" alt="Day 13.2">
+  </div>
+  <div class="desc">
+    <h3>D13~ 02/06/2025</h3>
+        <p>The jalapeno pot that sprouted first is now growing it's first true leaf. I am getting more and more excited.<br>
+		Today I was supposed to stop their direct sunlight at 10.am but I didn't until 12p.m (2 hours later). The plan is still in place starting tomorrow!!!<br>
+		The leaves seem normal and healthy.<br>
+		Let me note that I checked for the soil moisture today and it was not soggy but not dry as well. I decided to skip the watering process today.		
+		</p>
+    </p>
+    <div class="sub-box">
+      🌱Finally making the diary and getting it up online. Currently I make it for github pages but I will improve it and make it more "automatic" as time passes. <br>
+	  I will maybe move to wordpress or something to make it more dynamic as well.<br>
+	  Note to self: take better pictures
+    </div>
+  </div>
+	
+	<div class="entry">
+
+  <div class="photo-grid">
+    <img src="images/bac2k1.jpg" alt="aaa2">
+    <img src="images/bac2k2.jpg" alt="sadas22">
+	<img src="images/d123.1.jpg" alt="as2ew">
+  </div>
+  <div class="desc">
+    <h3>TEMPL D1~ 20/05/2025</h3>
+        <p>temptex <br>
+		<br>
+		temptex</p>
+    </p>
+    <div class="sub-box">
+      🌱tempdesc
+    </div>
+  </div>
+
+</div>
+
+  </div>
+
+  <!-- Lightbox modal -->
+  <div id="lightbox">
+    <span id="closeBtn">&times;</span>
+    <img id="lightboxImg" src="" alt=""/>
+    <div id="caption"></div>
+    <a id="prevBtn">&#10094;</a>
+    <a id="nextBtn">&#10095;</a>
   </div>
 
   <footer>
     © 2025 Kage no niwa My Plant Diary
   </footer>
+
+  <button id="topBtn" title="Go to top">⬆️ Top</button>
+
+  <script>
+    // Collect all images inside photo grids
+    const images = Array.from(document.querySelectorAll('.photo-grid img'));
+    let currentIndex = 0;
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const caption = document.getElementById('caption');
+    const closeBtn = document.getElementById('closeBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const img = images[currentIndex];
+      lightboxImg.src = img.src;
+      caption.textContent = img.alt || '';
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      openLightbox(currentIndex);
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % images.length;
+      openLightbox(currentIndex);
+    }
+
+    images.forEach((img, idx) => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', () => openLightbox(idx));
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showPrev();
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showNext();
+    });
+
+    // Optional: keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowLeft') showPrev();
+        else if (e.key === 'ArrowRight') showNext();
+      }
+    });
+  </script>
+
+  <script>
+    const topBtn = document.getElementById("topBtn");
+
+    // Show button after scrolling down 100px
+    window.onscroll = function() {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        topBtn.style.display = "block";
+      } else {
+        topBtn.style.display = "none";
+      }
+    };
+
+    // Smooth scroll to top when clicked
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 
 </body>
 </html>

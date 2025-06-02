@@ -1,0 +1,3 @@
+-add custom emotes and gifs
+-make subcategories for each individual plan(jalapeno,habanero)
+add button to display weather and temp numbers on that day
