@@ -6,28 +6,33 @@
   <title>Kage no niwa</title>
   <style>
   body {
-    background: url('images/glx.jpg') repeat-y left top,
-    url('images/glx.jpg') repeat-y right top;
-    background-color: #e9f5ec; /* Soft minty green */
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    color: #333;
+  background:
+
+    url('images/glx.jpg') no-repeat left top fixed,
+    url('images/back2.jpg') no-repeat right top fixed;
+  background-size: 50% 100%, 50% 100%;
+  background-position: left top, right top;
+  background-color: #e9f5ec;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: #333;
   }
 
   header {
-    background: #4caf50;
+    background: rgba(76, 175, 80, 0.6	); /* green with 70% opacity */
     color: white;
     padding: 1.5em;
     text-align: center;
   }
 
   .container {
+  
     max-width: 700px;
     margin: 0 auto;
     padding: 1em;
-	background: #d4e8dc; /* Light leafy green */
-    border-radius: 12px;
+	background: rgba(212, 232, 220, 0); /* Light leafy green with 60% opacity */
+	border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
 
@@ -51,9 +56,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 0.5em;
-    padding: 1em;
-    background: #fafafa;
+    padding: 0.5em;
+    background: transparent;
     border-radius: 8px;
+	
   }
 
   .photo-grid img {
@@ -73,10 +79,17 @@
   }
 
   footer {
-    text-align: center;
-    font-size: 0.8em;
-    color: #aaa;
-    padding: 2em 0;
+	  position: fixed;
+	  bottom: 10px;   /* distance from bottom */
+	  right: 10px;    /* distance from right */
+	  font-size: 0.8em;
+	  color: #aaa;
+	  background: rgba(255, 255, 255, 0.2); /* optional: semi-transparent background for readability */
+	  padding: 5px 10px;
+	  border-radius: 6px;
+	  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	  z-index: 100;  /* make sure it’s above other content */
+	  user-select: none; /* prevent text selection on accidental drags */
   }
 
   details summary {
@@ -151,8 +164,8 @@
   #topBtn {
     display: none; /* Hidden by default */
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 50px;
+    right: 40px;
     z-index: 100;
     font-size: 18px;
     background-color: #4caf50;
@@ -196,121 +209,125 @@
     <p>Tracking my green friends' growth every day(almost).</p>
   </header>
 
-  <div class="container" id="entries">
+	  <div class="container" id="entries">
 
-    <div class="entry">
-      <img src="images/d1.jpg" alt="Plant on May 30">
-      <div class="desc">
-		<h3>D1~ 20/05/2025</h3>
-			<p>First photo! Just planted everything. The soil smells great and it’s full of promise. <br>
-			<br>
-			Planted multiple seeds(4-5) of 3x Jalapeno pots and 2x Habanero. Habanero on the dark small pots</p>
-		</p>
-		<div class="sub-box">
-		  🌱Insights: Watering them every day with full sunlight.
+	  <div class="entry">
+		<img src="images/d1.jpg" alt="Plant on May 30">
+		<div class="desc">
+		  <h3>D1~ 20/05/2025</h3>
+		  <p>First photo! Just planted everything. The soil smells great and it’s full of promise. <br><br>
+		  Planted multiple seeds(4-5) of 3x Jalapeno pots and 2x Habanero. Habanero on the dark small pots</p>
+		  <div class="sub-box">
+			🌱Insights: Watering them every day with full sunlight.
+		  </div>
 		</div>
+	  </div> <!-- end entry -->
+
+	  <div class="entry">
+		<div class="photo-grid">
+		  <img src="images/d7.jpg" alt="Day 5">
 		</div>
-	  
-	</div>
-	
-	<div class="entry">
+		<div class="desc">
+		  <h3>D7~ 25/05/2025</h3>
+		  <p>The first baby leaf(I think I am saying it correctly) appeared. Thought it was just some other weed leaf.<br>
+		  This is the jalapeno pot and it was the first to come out of the soil.<br></p>
+		  <div class="sub-box">
+			🌱Everyone else is sleeping still zZz. When is wake up time??<br>
+		  </div>
+		</div>
+	  </div> <!-- end entry -->
 
-  <div class="photo-grid">
-    <img src="images/d7.jpg" alt="Day 5">
-  </div>
-  <div class="desc">
-    <h3>D7~ 25/05/2025</h3>
-        <p>The first baby leaf(I think I am saying it correctly) appeared. Thought it was just some other weed leaf.<br>
-		This is the jalapeno pot and it was the first to come out of the soil.<br>
-    </p>
-    <div class="sub-box">
-		🌱Everyone else is sleeping still zZz. When is wake up time??<br>
-    </div>
-  </div>
-  
-	<div class="entry">
+	  <div class="entry">
+		<div class="photo-grid">
+		  <img src="images/d11.1.jpg" alt="Day 11 Habanero">
+		  <img src="images/d11.2.jpg" alt="Day 11 Jalapeno">
+		</div>
+		<div class="desc">
+		  <h3>D11~ 31/05/2025</h3>
+		  <p>At day 10 I still didn't see any sprouts. (There were a couple of cloudy days). <br>
+		  I got anxious and snooped around the soil. I also wanted to check if the soil was too compact or had too many hard parts like wood or rocks not allowing the sprouts to come out. In the process I found out that there were sprouts.<br>
+		  As soon as I found them I let them be cause I didn't want to ruin their "come out" process anymore and just watered them.<br><br>
+		  This is what they looked like at Day 11. Also on the small Jalapeno pot another sprout made their 2baby flowers ahead of the others.
+		  </p>
+		  <div class="sub-box">
+			🌱At this point I am starting to look more and more into the flowering stage and how to make an online diary to share with people.
+		  </div>
+		</div>
+	  </div> <!-- end entry -->
 
-  <div class="photo-grid">
-    <img src="images/d11.1.jpg" alt="Day 11 Habanero">
-    <img src="images/d11.2.jpg" alt="Day 11 Jalapeno">
-  </div>
-  <div class="desc">
-    <h3>D11~ 31/05/2025</h3>
-        <p>At day 10 I still didn't see any sprouts. (There were a couple of cloudy days). <br>
-		I got anxious and snooped around the soil. I also wanted to check if the soil was too compact or had too many hard parts like wood or rocks not allowing the sprouts to come out. In the process I found out that there were sprouts.<br>
-		As soon as I found them I let them be cause I didn't want to ruin their "come out" process anymore and just watered them.<br>
-		<br>
-		This is what they looked like at Day 11. Also on the small Jalapeno pot another sprout made their 2baby flowers ahead of the others.
-		</p>
-    </p>
-    <div class="sub-box">
-      🌱At this point I am starting to look more and more into the flowering stage and how to make an online diary to share with people.
-    </div>
-  </div>
-  
-  	<div class="entry">
+	  <div class="entry">
+		<div class="photo-grid">
+		  <img src="images/d12.jpg" alt="Day 12">
+		</div>
+		<div class="desc">
+		  <h3>🎉D12~ 01/06/25 (EU format)</h3>
+		  <p>🎉🎉SUNNY DAY AT LAST AND EVERYONE IS MAKING A PARTY🎉🎉 <br>
+		  So excited today. I woke up to every sprout having their baby leaves out. Also we can see a second double sprout pot which gives me hope after not seeing anything for 10days.<br>
+		  </p>
+		  <div class="sub-box">
+			🌱After some research I decided to not water them daily if not needed(check with finger if soil is dry).<br>
+			Also I will try to progressively give them more light and not expose these babies to direct sun for the whole day. I mean the first one to grow baby flowers was exposed to it full time and looks fine but then again there were a lot of cloudy days <br>
+			Nevertheless I read on the internet that it makes the plants stronger so I will start putting them out of the direct sun starting at 10a.m. and progress by adding 1hour of direct sun time every day.
+		  </div>
+		</div>
+	  </div> <!-- end entry -->
 
-  <div class="photo-grid">
-    <img src="images/d12.jpg" alt="Day 12">
-  </div>
-  <div class="desc">
-    <h3>🎉D12~ 01/06/25 (EU format)</h3>
-        <p>🎉🎉SUNNY DAY AT LAST AND EVERYONE IS MAKING A PARTY🎉🎉 <br>
-		So excited today. I woke up to every sprout having their baby leaves out. Also we can see a second double sprout pot which gives me hope after not seeing anything for 10days.<br>
-		
-		</p>
-    </p>
-    <div class="sub-box">
-      🌱After some research I decided to not water them daily if not needed(check with finger if soil is dry).<br>
-	  Also I will try to progressively give them more light and not expose these babies to direct sun for the whole day. I mean the first one to grow baby flowers was exposed to it full time and looks fine but then again there were a lot of cloudy days <br>
-	  Nevertheless I read on the internet that it makes the plants stronger so I will start putting them out of the direct sun starting at 10a.m. and progress by adding 1hour of direct sun time every day.
-    </div>
-  </div>
-    
+	  <div class="entry">
+		<div class="photo-grid">
+		  <img src="images/d13.1.jpg" alt="Day 13.1">
+		  <img src="images/d13.2.jpg" alt="Day 13.2">
+		</div>
+		<div class="desc">
+		  <h3>D13~ 02/06/2025</h3>
+		  <p>The jalapeno pot that sprouted first is now growing it's first true leaf. I am getting more and more excited.<br>
+		  Today I was supposed to stop their direct sunlight at 10.am but I didn't until 12p.m (2 hours later). The plan is still in place starting tomorrow!!!<br>
+		  The leaves seem normal and healthy.<br>
+		  Let me note that I checked for the soil moisture today and it was not soggy but not dry as well. I decided to skip the watering process today.
+		  </p>
+		  <div class="sub-box">
+			🌱Finally making the diary and getting it up online. Currently I make it for github pages but I will improve it and make it more "automatic" as time passes. <br>
+			I will maybe move to wordpress or something to make it more dynamic as well.<br>
+			Note to self: take better pictures
+		  </div>
+		</div>
+	  </div> <!-- end entry -->
 
+	  <div class="entry">
+		<div class="photo-grid">
+		  <img src="images/d14.1.jpg" alt="Day 14.1 habanero">
+		  <img src="images/d14.2.jpg" alt="Day 14.2 jalapeno">
+		</div>
+		<div class="desc">
+		  <h3>D14~ 03/06/2025</h3>
+		  <p>We have officially completed the 2nd week!! Nothing much happening today, the plants look lively and one of the habanero is starting to grow it's first true leaf.<br>
+		  I noticed that the pot with the jalapeno that grew first has grown 3 sprouts. This is either due to me putting a lot of seeds in there or that the soil is better?! Seems weird.<br>
+		  Today I was planning on moving the pots out of direct sun at 10a.m but they were in the shade (sun didn't come to that spot yet).<br>
+		  That puts us back on track and we are right on schedule. Yesterday they had approximatelly 2hours of direct sunlight and today I left them for 3h-3.30h. Tomorrow I will do 4h-5h and after that I will leave the for the whole day unless it's scortching hot.<br>
+		  temptex
+		  </p>
+		  <div class="sub-box">
+			🌱tempdesc
+		  </div>
+		</div>
+	  </div> <!-- end entry -->
 
-	<div class="entry">
+	  <div class="entry">
+		<div class="photo-grid">
+		  <img src="images/bac2k1.jpg" alt="aaa2">
+		  <img src="images/bac2k2.jpg" alt="sadas22">
+		  <img src="images/d123.1.jpg" alt="as2ew">
+		</div>
+		<div class="desc">
+		  <h3>TEMPL D1~ 20/05/2025</h3>
+		  <p>temptex <br><br>temptex</p>
+		  <div class="sub-box">
+			🌱tempdesc
+		  </div>
+		</div>
+	  </div> <!-- end entry -->
 
-  <div class="photo-grid">
-    <img src="images/d13.1.jpg" alt="Day 13.1">
-	<img src="images/d13.2.jpg" alt="Day 13.2">
-  </div>
-  <div class="desc">
-    <h3>D13~ 02/06/2025</h3>
-        <p>The jalapeno pot that sprouted first is now growing it's first true leaf. I am getting more and more excited.<br>
-		Today I was supposed to stop their direct sunlight at 10.am but I didn't until 12p.m (2 hours later). The plan is still in place starting tomorrow!!!<br>
-		The leaves seem normal and healthy.<br>
-		Let me note that I checked for the soil moisture today and it was not soggy but not dry as well. I decided to skip the watering process today.		
-		</p>
-    </p>
-    <div class="sub-box">
-      🌱Finally making the diary and getting it up online. Currently I make it for github pages but I will improve it and make it more "automatic" as time passes. <br>
-	  I will maybe move to wordpress or something to make it more dynamic as well.<br>
-	  Note to self: take better pictures
-    </div>
-  </div>
-	
-	<div class="entry">
+	</div> <!-- end container -->
 
-  <div class="photo-grid">
-    <img src="images/bac2k1.jpg" alt="aaa2">
-    <img src="images/bac2k2.jpg" alt="sadas22">
-	<img src="images/d123.1.jpg" alt="as2ew">
-  </div>
-  <div class="desc">
-    <h3>TEMPL D1~ 20/05/2025</h3>
-        <p>temptex <br>
-		<br>
-		temptex</p>
-    </p>
-    <div class="sub-box">
-      🌱tempdesc
-    </div>
-  </div>
-
-</div>
-
-  </div>
 
   <!-- Lightbox modal -->
   <div id="lightbox">
