@@ -6,25 +6,73 @@
   <title>Kage no niwa</title>
   <style>
   body {
-  background:
-
-    url('images/glx.jpg') no-repeat left top fixed,
-    url('images/back2.jpg') no-repeat right top fixed;
-  background-size: 50% 100%, 50% 100%;
-  background-position: left top, right top;
-  background-color: #e9f5ec;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  color: #333;
+	  background: url('images/glx.jpg') no-repeat left top fixed,
+		url('images/back2.jpg') no-repeat right top fixed;
+	  background-size: 50% 100%, 50% 100%;
+	  background-position: left top, right top;
+	  background-color: #e9f5ec;
+	  margin: 0;
+	  padding: 0;
+	  font-family: sans-serif;
+	  color: #333;
   }
 
   header {
-    background: rgba(76, 175, 80, 0.6	); /* green with 70% opacity */
-    color: white;
-    padding: 1.5em;
-    text-align: center;
+	  position: fixed;
+	  top: 0;
+	  width: 100%;
+	  background: rgba(76, 175, 80, 0.6);
+	  color: white;
+	  transition: all 0.3s ease;
+	  z-index: 100;
+	  padding: 1.5em 1em;
+	  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   }
+	  .header-inner {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  max-width: 1200px;
+	  margin: 0 auto;
+	  transition: all 0.3s ease;
+	  flex-wrap: wrap;
+	}
+
+	.title {
+	  font-size: 1.6em;
+	  margin: 0;
+	  transition: all 0.3s ease;
+	}
+
+	.subtitle {
+	  width: 100%;
+	  text-align: center;
+	  margin-top: 0.5em;
+	  font-size: 0.9em;
+	  transition: opacity 0.3s ease;
+	}
+
+	header.shrink {
+	  padding: 0.5em 1em;
+	}
+
+	header.shrink .header-inner {
+	  justify-content: space-between;
+	}
+
+	header.shrink .title {
+	  font-size: 1.2em;
+	}
+
+	header.shrink .subtitle {
+	  opacity: 0;
+	  height: 0;
+	  overflow: hidden;
+	}
+
+	header.shrink .nav-links {
+	  display: block !important;
+	}
 
   .container {
   
@@ -205,8 +253,14 @@
 <body>
 
   <header>
-    <h1>🌿 Kage no niwa</h1>
-    <p>Tracking my green friends' growth every day(almost).</p>
+    <div class="header-inner">
+    <h1 class="title">🌿 Kage no niwa</h1>
+    <p class="subtitle">Tracking my green friends' growth every day (almost).</p>
+    <!-- Placeholder for future subcategories -->
+    <nav class="nav-links" style="display: none;">
+      <!-- links will go here -->
+    </nav>
+  </div>
   </header>
 
 	  <div class="container" id="entries">
@@ -305,8 +359,26 @@
 		  That puts us back on track and we are right on schedule. Yesterday they had approximatelly 2hours of direct sunlight and today I left them for 3h-3.30h. Tomorrow I will do 4h-5h and after that I will leave the for the whole day unless it's scortching hot.<br>
 		  temptex
 		  </p>
+		  
+		</div>
+	  </div> <!-- end entry -->
+	  
+	  <div class="entry">
+		<div class="photo-grid">
+		  <img src="images/d15.1.jpg" alt="Day 15 Habaneros">
+		  <img src="images/d15.3.jpg" alt="Day 15 Jalapeno">
+		  <img src="images/d15.2.jpg" alt="Day 15 Jalapeno 'Jar of Greed'">
+		</div>
+		<div class="desc">
+		  <h3>D15~ 04/06/2025</h3>
+		  <p>Gday!! Yesterday I placed my pots in a different place where they would have sun since early morning.  <br>
+		  Firstly, about the habaneros. They are still small and one of them has its leaves curling a bit in the edges. I am trying to be careful with sun exposure since that's usually the reason or the roots and watering but I've noticed it happens during shade time as well.<br>
+		  Anyhow..their first true leaves are barely visible now so as soon as they are out I think they will start developing a lot faster and have a good time into the flowering stage. <br>
+		  Concerning the jalapenos on the round pots they look really healthy and tall and they are starting to grow their first true leaves as well. <br>
+		  Lastly about the prodigy pot, I am gonna start calling it the "Jar of Greed" since it's the most successful pot so far. Yesterday I snipped the baby sprout that has round baby leaves because it was probably weed and I didn't want it to "steal" the nutrients from the other seedlings in the pot. About the big seelding, the true leaf is growing really fast and it also started to grow a second true leaf. It is really ahead of the others. For sure it will be the first that needs a repot.
+		  <br></p>
 		  <div class="sub-box">
-			🌱tempdesc
+			🌱I am really sceptical about watering them or how much direct sunlight time they need. If they were at the flowering stage I wouldn't mind leaving them half a day with dry soil in order to not overdo it, but since they are in the "baby leaves" phase their roots are sensitive. I will take special care of the smaller ones and move them to shade earlier considering their leaves curl since they do not have the same needs as the most grown ones.
 		  </div>
 		</div>
 	  </div> <!-- end entry -->
@@ -409,21 +481,25 @@
   </script>
 
   <script>
-    const topBtn = document.getElementById("topBtn");
+	  // Scroll-based header shrinking and top button visibility
+	  const header = document.querySelector('header');
+	  const topBtn = document.getElementById('topBtn');
 
-    // Show button after scrolling down 100px
-    window.onscroll = function() {
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        topBtn.style.display = "block";
-      } else {
-        topBtn.style.display = "none";
-      }
-    };
+	  window.addEventListener('scroll', () => {
+		// Shrink header after scrolling 50px
+		if (window.scrollY > 50) {
+		  header.classList.add('shrink');
+		  topBtn.style.display = 'block';
+		} else {
+		  header.classList.remove('shrink');
+		  topBtn.style.display = 'none';
+		}
+	  });
 
-    // Smooth scroll to top when clicked
-    topBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+	  // Scroll to top when button clicked
+	  topBtn.addEventListener('click', () => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	  });
   </script>
 
 </body>
