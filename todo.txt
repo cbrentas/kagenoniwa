@@ -2,3 +2,4 @@ add custom emotes and gifs
 make subcategories for each individual plan(jalapeno,habanero)
 add button to display weather and temp numbers on that day
 ----make one page scroll (images left and right stay same)
+put chatgpt to give feedback in a collapsing option
