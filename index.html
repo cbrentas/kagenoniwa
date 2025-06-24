@@ -136,7 +136,7 @@
 	  padding: 5px 10px;
 	  border-radius: 6px;
 	  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-	  z-index: 100;  /* make sure it’s above other content */
+	  z-index: 100;  /* make sure it's above other content */
 	  user-select: none; /* prevent text selection on accidental drags */
   }
 
@@ -245,6 +245,109 @@
 	box-shadow: inset 0 0 3px rgba(0,0,0,0.05);
 	}
 
+#calendarDayCounter {
+  position: fixed;
+  top: 200px;
+  left: 100px;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.weather-date-info {
+  margin-top: 38px;
+  margin-bottom: 8px;
+  text-align: center;
+  font-size: 1.15em;
+  color: #333;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  background: #fffbe7;
+  border: 2px solid #ffe082;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(255, 193, 7, 0.10);
+  padding: 7px 0 7px 0;
+  display: inline-block;
+  min-width: 160px;
+}
+.weather-info {
+  margin-top: 8px;
+  background: #f4f9f6;
+  border-radius: 10px;
+  padding: 10px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1em;
+  box-shadow: 0 1px 4px rgba(76,175,80,0.07);
+  color: #333;
+  min-width: 170px;
+}
+.weather-info span {
+  margin: 2px 0;
+}
+.calendar-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.18);
+  width: 240px;
+  height: 255px;
+  position: relative;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  border: 2.5px solid #e0e0e0;
+}
+.calendar-icon .calendar-hangers {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 32px;
+}
+.calendar-icon .calendar-hanger-ring {
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border: 3.5px solid #4caf50;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+}
+.calendar-icon .calendar-header {
+  background: linear-gradient(90deg, #43a047 60%, #66bb6a 100%);
+  color: #fff;
+  width: 100%;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 24px 0 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(76,175,80,0.10);
+  position: relative;
+}
+.calendar-icon .calendar-header .calendar-emoji {
+  margin-right: 12px;
+  font-size: 1.7em;
+}
+.calendar-icon .calendar-day {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5.2em;
+  font-weight: bold;
+  color: #333;
+  margin-top: 24px;
+  text-shadow: 0 2px 8px rgba(76,175,80,0.08);
+}
 
   </style>
 
@@ -263,13 +366,18 @@
   </div>
   </header>
 
+  <!-- Day counter calendar icon below header -->
+  <div id="calendarDayCounter">
+    <!-- Calendar and weather/date info will be injected here -->
+  </div>
+
 	  <div class="container" id="entries">
 
 	  <div class="entry">
 		<img src="images/d1.jpg" alt="Plant on May 30">
 		<div class="desc">
 		  <h3>D1~ 20/05/2025</h3>
-		  <p>First photo! Just planted everything. The soil smells great and it’s full of promise. <br><br>
+		  <p>First photo! Just planted everything. The soil smells great and it's full of promise. <br><br>
 		  Planted multiple seeds(4-5) of 3x Jalapeno pots and 2x Habanero. Habanero on the dark small pots</p>
 		  <div class="sub-box">
 			🌱Insights: Watering them every day with full sunlight.
@@ -334,7 +442,7 @@
 		<div class="desc">
 		  <h3>D13~ 02/06/2025</h3>
 		  <p>The jalapeno pot that sprouted first is now growing it's first true leaf. I am getting more and more excited.<br>
-		  Today I was supposed to stop their direct sunlight at 10.am but I didn't until 12p.m (2 hours later). The plan is still in place starting tomorrow!!!<br>
+		  Today I was supposed to stop their direct sunlight at 10a.m but I didn't until 12p.m (2 hours later). The plan is still in place starting tomorrow!!!<br>
 		  The leaves seem normal and healthy.<br>
 		  Let me note that I checked for the soil moisture today and it was not soggy but not dry as well. I decided to skip the watering process today.
 		  </p>
@@ -511,6 +619,23 @@
 		  </div>
 		</div>
 	  </div> <!-- end entry -->
+	  
+	  <div class="entry">
+		<div class="photo-grid">
+		  <img src="images/d35.1.jpg" alt="Day 35">
+		  <img src="images/d35.2.jpg" alt="Day 35">
+		  <img src="images/d35.3.jpg" alt="Day 35">
+		</div>
+		<div class="desc">
+		  <h3>D35~ 24/06/2025</h3>
+		  <p>First day after replanting and the plants look like frozen pillars xD. What I mean to say is that they haven't responded neither positively nor negatively. They just stayed as is. <br>
+		     I guess this is a good sign and they are just getting accustomed to their new bed.
+		  </p>
+		  <div class="sub-box">
+			🌱I made some changes to the page today, experimenting. I am slightly concerned because the soil is still moist since yesterday's watering but it was not really hot to be honest. I will have to keep it in mind and be careful for faulty water drainage.
+		  </div>
+		</div>
+	  </div> <!-- end entry -->
 
 
 	  <div class="entry">
@@ -630,6 +755,67 @@
 	  topBtn.addEventListener('click', () => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	  });
+  </script>
+
+  <script>
+    // Day counter calendar icon and weather/date info
+    (function() {
+      // Set your planting date here (YYYY-MM-DD)
+      const plantingDate = new Date('2025-05-20');
+      const today = new Date();
+      // Calculate difference in milliseconds
+      const diffTime = today - plantingDate;
+      // Convert to days (1 day = 86400000 ms)
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+      // Format date as 'Friday 05, 2025'
+      const daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      const dayName = daysOfWeek[today.getDay()];
+      const dayNum = String(today.getDate()).padStart(2, '0');
+      const monthNum = String(today.getMonth() + 1).padStart(2, '0');
+      const year = today.getFullYear();
+      const formattedDate = `${dayName} ${dayNum}, ${year}`;
+
+      // Build the calendar icon HTML
+      let calendarHTML = `
+        <div class=\"calendar-icon\">
+          <div class=\"calendar-hangers\">
+            <div class=\"calendar-hanger-ring\"></div>
+            <div class=\"calendar-hanger-ring\"></div>
+          </div>
+          <div class=\"calendar-header\"><span class=\"calendar-emoji\">📅</span>Days since seed</div>
+          <div class=\"calendar-day\">${diffDays + 1}</div>
+          <div class=\"weather-date-info\" id=\"weatherDateInfo\"><span style='font-weight:600;'>Today:</span> ${formattedDate}</div>
+          <div class=\"weather-info\" id=\"weatherInfo\">Loading weather...</div>
+        </div>
+      `;
+      document.getElementById('calendarDayCounter').innerHTML = calendarHTML;
+
+      // Weather API fetch for Trikala, Greece
+      const apiKey = '980963a7b5e546347035a9531ab51a83'; // <-- Replace with your OpenWeatherMap API key
+      const city = 'Trikala,GR';
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+        .then(response => response.json())
+        .then(data => {
+          const temp = Math.round(data.main.temp);
+          const humidity = data.main.humidity;
+          const weatherMain = data.weather[0].main.toLowerCase();
+          let weatherType = '';
+          let weatherIcon = '';
+          if (weatherMain.includes('clear')) { weatherType = 'Sunny'; weatherIcon = '☀️'; }
+          else if (weatherMain.includes('rain')) { weatherType = 'Rain'; weatherIcon = '🌧️'; }
+          else if (weatherMain.includes('snow')) { weatherType = 'Snow'; weatherIcon = '❄️'; }
+          else if (weatherMain.includes('cloud')) { weatherType = 'Cloudy'; weatherIcon = '☁️'; }
+          else { weatherType = data.weather[0].main; weatherIcon = '🌡️'; }
+          document.getElementById('weatherInfo').innerHTML =
+            `<span>${weatherIcon} ${weatherType}</span>` +
+            `<span>🌡️ ${temp}&deg;C</span>` +
+            `<span>💧 ${humidity}%</span>`;
+        })
+        .catch(() => {
+          document.getElementById('weatherInfo').innerHTML = 'Weather unavailable';
+        });
+    })();
   </script>
 
 </body>
